@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
   import Modal from "./Modal.svelte";
 
-  let modalOpen = false;
+  let modalOpen: boolean = false;
 
   const handleOpen = () => {
     modalOpen = !modalOpen;
