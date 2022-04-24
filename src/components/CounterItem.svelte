@@ -7,7 +7,9 @@
   };
 
   const decrement = (i) => {
-    $counters[i].count -= 1;
+    if ($counters[i].count > 0) {
+      $counters[i].count -= 1;
+    }
   };
 
   const reset = (i) => {
@@ -72,4 +74,13 @@
       return sum + element.count;
     }, 0)}
   </p>
+</div>
+<div class="mt-6 flex justify-center items-start text-2xl">
+  <p>タイトルリスト：</p>
+  <ul class="flex">
+    {#each $counters as item, index}
+      <span class={index > 0 ? "visible" : "hidden"}>,</span>
+      <li class="mr-2">{item.title}</li>
+    {/each}
+  </ul>
 </div>
