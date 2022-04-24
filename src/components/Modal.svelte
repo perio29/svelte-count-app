@@ -1,10 +1,10 @@
-<script>
+<script lang="ts">
   import { counters } from "../store";
   import { createEventDispatcher } from "svelte";
 
   const dispatch = createEventDispatcher();
 
-  let title = "";
+  let title: string = "";
 
   const handleAddCounter = () => {
     $counters = [...$counters, { title: title, count: 0 }];
