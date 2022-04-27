@@ -7,7 +7,9 @@
   };
 
   const decrement = (i) => {
-    $counters[i].count -= 1;
+    if ($counters[i].count > 0) {
+      $counters[i].count -= 1;
+    }
   };
 
   const reset = (i) => {
@@ -18,6 +20,12 @@
     $counters.splice(i, 1);
     $counters = $counters;
   };
+
+  $: total = $counters.reduce(function (sum, element) {
+    return sum + element.count;
+  }, 0);
+
+  $: sumTitle = $counters.map((doc) => doc.title);
 </script>
 
 <div>
@@ -67,9 +75,9 @@
 
 <div class="mt-6 flex justify-center text-2xl">
   <p>カウンターの合計：</p>
-  <p>
-    {$counters.reduce(function (sum, element) {
-      return sum + element.count;
-    }, 0)}
-  </p>
+  {total}
+</div>
+<div class="mt-6 flex justify-center items-start text-2xl">
+  <p>タイトルリスト：</p>
+  {sumTitle}
 </div>
