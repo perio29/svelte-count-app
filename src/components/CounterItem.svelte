@@ -20,6 +20,12 @@
     $counters.splice(i, 1);
     $counters = $counters;
   };
+
+  $: total = $counters.reduce(function (sum, element) {
+    return sum + element.count;
+  }, 0);
+
+  $: sumTitle = $counters.map((doc) => doc.title);
 </script>
 
 <div>
@@ -69,18 +75,9 @@
 
 <div class="mt-6 flex justify-center text-2xl">
   <p>カウンターの合計：</p>
-  <p>
-    {$counters.reduce(function (sum, element) {
-      return sum + element.count;
-    }, 0)}
-  </p>
+  {total}
 </div>
 <div class="mt-6 flex justify-center items-start text-2xl">
   <p>タイトルリスト：</p>
-  <ul class="flex">
-    {#each $counters as item, index}
-      <span class={index > 0 ? "visible" : "hidden"}>,</span>
-      <li class="mr-2">{item.title}</li>
-    {/each}
-  </ul>
+  {sumTitle}
 </div>
